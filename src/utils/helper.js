@@ -23,19 +23,13 @@ const monthsMap = {
   '11': 'Dec'
 };
 
-const convertTemp = kelvin => {
-  let temp = (kelvin - 273.15) * 1.8 + 32.0;
-  return Number(temp);
+export const convertTemp = kelvin => {
+  return parseInt((kelvin - 273.15) * 1.8 + 32.0, 10);
 };
 
-const getDate = unixTimestmap => {
+export const getDate = unixTimestmap => {
   const date = new Date(unixTimestmap * 1000);
   const day = daysMap[date.getDay()];
   const month = monthsMap[date.getMonth()] + ' ' + date.getDate();
   return day + ', ' + month;
-};
-
-module.exports = {
-  convertTemp,
-  getDate
 };

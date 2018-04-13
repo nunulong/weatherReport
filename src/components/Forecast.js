@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import DayItem from './DayItem';
 import queryString from 'query-string';
-import {} from '../utils/api';
+import { getForecast } from '../utils/api';
 
 class Forecast extends Component {
   constructor(props) {
@@ -54,15 +54,17 @@ class Forecast extends Component {
       <div>
         <h1 className="forecast-header">{this.city}</h1>
         <div className="forecast-container">
-          {this.state.forecastData.list.map(function(listItem) {
+          {this.state.data.list.map(listItem => {
             return (
               <DayItem
-                onClick={this.handleClick.bind(this, listItem)}
+                onClick={() => {
+                  this.handleClick(listItem);
+                }}
                 key={listItem.dt}
                 day={listItem}
               />
             );
-          }, this)}
+          })}
         </div>
       </div>
     );

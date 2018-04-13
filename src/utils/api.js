@@ -1,48 +1,43 @@
 import axios from 'axios';
 
-const baseUrl = 'http://api.openweathermap.org/data/2.5/';
-const API_KEY = 'c4bbdfb117c35598064a92b2bef106aa';
+const _baseURL = 'http://api.openweathermap.org/data/2.5/';
+const _APIKEY = 'f836279b500fe1fbee1a5ed28785c44b';
 
-const routeParams = queryStringData => {
+const prepRouteParams = queryStringData => {
   return Object.keys(queryStringData)
     .map(key => {
-      return `${key}=${encodeURIComponent(queryStringData)}`;
+      return key + '=' + encodeURIComponent(queryStringData[key]);
     })
     .join('&');
 };
 
-const getUrl = (type, queryStringData) => {
-  return `${baseUrl}${type}?${routeParams(queryStringData)}`;
+const prepUrl = (type, queryStringData) => {
+  return _baseURL + type + '?' + prepRouteParams(queryStringData);
 };
 
 const getQueryStringData = city => {
   return {
     q: city,
     type: 'accurate',
-    APPID: API_KEY,
+    appid: _APIKEY,
     cnt: 5
   };
 };
 
-const getCurrentWeather = city => {
+export const getCurrentWeather = city => {
   const queryStringData = getQueryStringData(city);
-  const url = getUrl('weather', queryStringData);
+  const url = prepUrl('weather', queryStringData);
 
-  return axios.get(url).then(response => {
-    return response.data;
+  return axios.get(url).then(currentWeatherData => {
+    return currentWeatherData.data;
   });
 };
 
-const getForecast = city => {
+export const getForecast = city => {
   const queryStringData = getQueryStringData(city);
-  const url = getUrl('forecast/daily', queryStringData);
+  const url = prepUrl('forecast/daily', queryStringData);
 
-  return axios.get(url).then(response => {
-    return response.data;
+  return axios.get(url).then(forecastData => {
+    return forecastData.data;
   });
-};
-
-export default {
-  getCurrentWeather,
-  getForecast
 };

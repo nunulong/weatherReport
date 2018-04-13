@@ -36,6 +36,7 @@ class ZipCode extends Component {
           placeholder="New York, New York"
           type="text"
           value={this.state.zipcode}
+          title="City name or Zipcode"
         />
         <button
           type="button"

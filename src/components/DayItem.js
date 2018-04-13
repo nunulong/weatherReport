@@ -8,7 +8,7 @@ const DayItem = props => {
     <div onClick={props.onClick} className="dayContainer">
       <img
         className="weather"
-        src={`../assets/weather-icons/${icon}.svg`}
+        src={require(`../assets/weather-icons/${icon}.svg`)}
         alt="Weather"
       />
       <h2 className="subheader">{date}</h2>

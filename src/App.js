@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  NavLink as Link
+} from 'react-router-dom';
 import ZipCode from './components/ZipCode';
 import Forecast from './components/Forecast';
 import Detail from './components/Detail';
@@ -14,7 +18,11 @@ class App extends Component {
             render={props => {
               return (
                 <div className="navbar">
-                  <h1>Weather Report</h1>
+                  <h1>
+                    <Link exact to="/">
+                      Weather Report
+                    </Link>
+                  </h1>
                   <ZipCode
                     direction="row"
                     onSubmitZipCode={city => {
