@@ -12,7 +12,7 @@ import Detail from './components/Detail';
 class App extends Component {
   render() {
     return (
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <div className="container" id="app">
           <Route
             render={props => {
