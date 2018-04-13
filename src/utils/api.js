@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const _baseURL = 'http://api.openweathermap.org/data/2.5/';
-const _APIKEY = 'f836279b500fe1fbee1a5ed28785c44b';
+const _APIKEY = 'b714ec74bbab5650795063cb0fdf5fbe';
 
 const prepRouteParams = queryStringData => {
   return Object.keys(queryStringData)
